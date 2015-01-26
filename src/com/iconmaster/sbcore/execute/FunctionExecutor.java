@@ -2,6 +2,7 @@ package com.iconmaster.sbcore.execute;
 
 import com.iconmaster.sbcore.execute.BlockHelper.Block;
 import com.iconmaster.sbcore.library.CoreFunctions.CustomFunction;
+import com.iconmaster.sbcore.library.CoreFunctions.CustomIterator;
 import com.iconmaster.source.compile.Operation;
 import com.iconmaster.source.compile.Operation.OpType;
 import com.iconmaster.source.prototype.Field;
@@ -145,8 +146,14 @@ public class FunctionExecutor extends Executor {
 					a.add(getVar(iterOp.args[i]));
 				}
 				aa = a.toArray(new SourceObject[0]);
-				IteratorExecutor exec = new IteratorExecutor(vm, this, iter, aa);
-				vm.loadExecutor(exec);
+				if (iter.data.containsKey("onRun")) {
+					CustomIterator ci = ((CustomIterator)iter.data.get("onRun"));
+					CustomIteratorExecutor exec = new CustomIteratorExecutor(vm, this, ci, aa);
+					vm.loadExecutor(exec);
+				} else {
+					IteratorExecutor exec = new IteratorExecutor(vm, this, iter, aa);
+					vm.loadExecutor(exec);
+				}
 				break;
 			case ENDB:
 				if (blockStack.peek().op.op==OpType.IF) {

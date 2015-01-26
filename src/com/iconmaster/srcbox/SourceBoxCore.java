@@ -1,6 +1,5 @@
 package com.iconmaster.srcbox;
 
-import com.iconmaster.source.compile.CompileUtils;
 import com.iconmaster.source.link.Platform;
 import com.iconmaster.source.prototype.SourcePackage;
 import com.iconmaster.srcbox.library.CoreFunctions;
@@ -17,7 +16,5 @@ public class SourceBoxCore {
 		lib = new LibraryCore();
 		plat.registerLibrary(lib);
 		CoreFunctions.registerFunctions(lib);
-		
-		plat.transforms.add(CompileUtils.gotoReplacer);
 	}
 }

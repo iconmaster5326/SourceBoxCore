@@ -24,8 +24,8 @@ public class VirtualMachine {
 		return execs.peek();
 	}
 	
-	public void loadFunction(Function fn) {
-		execs.push(new FunctionExecutor(this, fn));
+	public void loadFunction(Function fn, SourceObject... args) {
+		execs.push(new FunctionExecutor(this, fn, args));
 		done = false;
 	}
 	

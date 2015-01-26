@@ -1,6 +1,7 @@
 package com.iconmaster.srcbox.execute;
 
 import com.iconmaster.source.compile.Operation;
+import com.iconmaster.source.prototype.Field;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.TypeDef;
 import java.util.ArrayList;
@@ -15,16 +16,32 @@ public class FunctionExecutor extends Executor {
 	public SourceObject returns;
 	public int pc = 0;
 	public ArrayList<Operation> code;
+	public boolean inCall = false;
+	public SourceObject[] args;
 
-	public FunctionExecutor(VirtualMachine vm, Function fn) {
+	public FunctionExecutor(VirtualMachine vm, Function fn, SourceObject... args) {
 		this.vm = vm;
 		this.fn = fn;
 		this.code = fn.getCode();
+		this.args = args;
+		
+		for (int i = 0;i<args.length;i++) {
+			Field arg = fn.getArguments().get(i);
+			setVar(arg.getName(), args[i]);
+		}
 	}
 
 	@Override
 	public void step() {
 		Operation op = code.get(pc);
+		
+		if (inCall) {
+			setVar(op.args[0], ((FunctionExecutor)vm.last).returns);
+			
+			inCall = false;
+			incPC();
+			return;
+		}
 		
 		switch (op.op) {
 			case MOVN:
@@ -48,8 +65,22 @@ public class FunctionExecutor extends Executor {
 			case MOV:
 				setVar(op.args[0], getVar(op.args[1]));
 				break;
+			case CALL:
+				String fnName = op.args[1];
+				Function fn = vm.pkg.getFunction(fnName);
+				ArrayList<SourceObject> a = new ArrayList<>();
+				for (int i=2;i<op.args.length;i++) {
+					a.add(getVar(op.args[i]));
+				}
+				vm.loadFunction(fn, a.toArray(new SourceObject[0]));
+				inCall = true;
+				return;
 		}
 		
+		incPC();
+	}
+
+	public void incPC() {
 		pc++;
 		if (pc>=code.size()) {
 			done = true;

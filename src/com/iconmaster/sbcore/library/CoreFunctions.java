@@ -24,6 +24,7 @@ public class CoreFunctions {
 		pkg.getFunction("core.print").data.put("onRun",(CustomFunction) (vm, args) -> {
 			PrintWriter pw = new PrintWriter(vm.outputStream);
 			pw.println(args[0].data);
+			pw.flush();
 			return null;
 		});
 		

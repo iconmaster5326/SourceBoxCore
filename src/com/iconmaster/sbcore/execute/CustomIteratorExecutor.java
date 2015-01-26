@@ -28,6 +28,7 @@ public class CustomIteratorExecutor extends Executor {
 			creator.pc = creator.blockStack.peek().endOp;
 			creator.iterStack.pop();
 			creator.done = false;
+			done = true;
 			return;
 		}
 		

@@ -4,6 +4,7 @@ import com.iconmaster.sbcore.execute.SourceObject;
 import com.iconmaster.sbcore.execute.VirtualMachine;
 import com.iconmaster.source.prototype.SourcePackage;
 import com.iconmaster.source.prototype.TypeDef;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,8 @@ public class CoreFunctions {
 	
 	public static void registerFunctions(SourcePackage pkg) {
 		pkg.getFunction("core.print").data.put("onRun",(CustomFunction) (vm, args) -> {
-			System.out.println(args[0].data);
+			PrintWriter pw = new PrintWriter(vm.outputStream);
+			pw.println(args[0].data);
 			return null;
 		});
 		

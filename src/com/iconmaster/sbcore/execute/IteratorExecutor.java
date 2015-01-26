@@ -25,6 +25,11 @@ public class IteratorExecutor extends FunctionExecutor {
 			Operation op = code.get(pc);
 
 			if (op.op==OpType.RET) {
+				int i=0;
+				for (String var : creator.iterStack.peek()) {
+					creator.setVar(var, getVar(op.args[i]));
+					i++;
+				}
 				vm.loadExecutor(creator);
 				creator.done = false;
 
@@ -43,6 +48,7 @@ public class IteratorExecutor extends FunctionExecutor {
 	
 	public void endIt() {
 		creator.pc = creator.blockStack.peek().endOp;
+		creator.iterStack.pop();
 		creator.done = false;
 	}
 	

@@ -9,6 +9,7 @@ import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.Iterator;
 import com.iconmaster.source.prototype.TypeDef;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -27,6 +28,8 @@ public class FunctionExecutor extends Executor {
 	public Stack<Block> blockStack = new Stack<>();
 	public ArrayList<Block> blocks;
 	public Stack<Block> repStack = new Stack<>();
+	
+	public Stack<String[]> iterStack = new Stack<>();
 
 	public FunctionExecutor(VirtualMachine vm, Function fn, SourceObject... args) {
 		this.vm = vm;
@@ -135,6 +138,7 @@ public class FunctionExecutor extends Executor {
 				}
 				break;
 			case FOR:
+				iterStack.push(Arrays.copyOfRange(op.args, 1, op.args.length-1));
 				Operation iterOp = code.get(pc-1);
 				Iterator iter = vm.pkg.getIterator(iterOp.args[0]);
 				a = new ArrayList<>();

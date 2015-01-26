@@ -6,6 +6,7 @@ import com.iconmaster.source.compile.Operation;
 import com.iconmaster.source.compile.Operation.OpType;
 import com.iconmaster.source.prototype.Field;
 import com.iconmaster.source.prototype.Function;
+import com.iconmaster.source.prototype.Iterator;
 import com.iconmaster.source.prototype.TypeDef;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -133,6 +134,17 @@ public class FunctionExecutor extends Executor {
 					}
 				}
 				break;
+			case FOR:
+				Operation iterOp = code.get(pc-1);
+				Iterator iter = vm.pkg.getIterator(iterOp.args[0]);
+				a = new ArrayList<>();
+				for (int i=1;i<iterOp.args.length;i++) {
+					a.add(getVar(iterOp.args[i]));
+				}
+				aa = a.toArray(new SourceObject[0]);
+				IteratorExecutor exec = new IteratorExecutor(vm, this, iter, aa);
+				vm.loadExecutor(exec);
+				break;
 			case ENDB:
 				if (blockStack.peek().op.op==OpType.IF) {
 					blockStack.pop();
@@ -140,6 +152,9 @@ public class FunctionExecutor extends Executor {
 					pc = blockStack.peek().doOp;
 				} else if (blockStack.peek().op.op==OpType.REP) {
 					pc = blockStack.peek().doOp;
+				} else if (blockStack.peek().op.op==OpType.FOR) {
+					pc = blockStack.peek().blockOp;
+					done = true;
 				}
 				break;
 		}

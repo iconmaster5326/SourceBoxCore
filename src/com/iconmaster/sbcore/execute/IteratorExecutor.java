@@ -31,10 +31,10 @@ public class IteratorExecutor extends FunctionExecutor {
 				incPC();
 			} else {
 				super.step();
-			}
-
-			if (pc>=code.size()) {
-				endIt();
+				
+				if (pc>=code.size()) {
+					endIt();
+				}
 			}
 		} else {
 			endIt();

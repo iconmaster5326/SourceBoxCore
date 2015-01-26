@@ -21,20 +21,29 @@ public class IteratorExecutor extends FunctionExecutor {
 
 	@Override
 	public void step() {
-		Operation op = code.get(pc);
-		
-		if (op.op==OpType.RET) {
-			vm.loadExecutor(creator);
-			creator.done = false;
-			
-			incPC();
+		if (pc<code.size()) {
+			Operation op = code.get(pc);
+
+			if (op.op==OpType.RET) {
+				vm.loadExecutor(creator);
+				creator.done = false;
+
+				incPC();
+			} else {
+				super.step();
+			}
+
+			if (pc>=code.size()) {
+				endIt();
+			}
 		} else {
-			super.step();
+			endIt();
 		}
-		if (pc>=code.size()) {
-			creator.pc = creator.blockStack.peek().endOp;
-			creator.done = false;
-		}
+	}
+	
+	public void endIt() {
+		creator.pc = creator.blockStack.peek().endOp;
+		creator.done = false;
 	}
 	
 }

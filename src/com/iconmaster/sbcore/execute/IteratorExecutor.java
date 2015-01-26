@@ -28,18 +28,12 @@ public class IteratorExecutor extends FunctionExecutor {
 			creator.done = false;
 			
 			incPC();
-			
-			if (pc>=code.size()) {
-				creator.pc = creator.blockStack.peek().blockOp;
-				creator.done = false;
-			}
 		} else {
 			super.step();
-			
-			if (pc>=code.size()) {
-				creator.pc = creator.blockStack.peek().blockOp;
-				creator.done = false;
-			}
+		}
+		if (pc>=code.size()) {
+			creator.pc = creator.blockStack.peek().endOp;
+			creator.done = false;
 		}
 	}
 	

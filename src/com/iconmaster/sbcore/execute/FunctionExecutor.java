@@ -81,6 +81,16 @@ public class FunctionExecutor extends Executor {
 					inCall = true;
 					return;
 				}
+			case RET:
+				done = true;
+				if (op.args.length>0) {
+					returns = getVar(op.args[0]);
+				} else {
+					returns = null;
+				}
+				return;
+			case DO:
+				break;
 		}
 		
 		incPC();

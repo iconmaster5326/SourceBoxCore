@@ -4,6 +4,7 @@ import com.iconmaster.source.compile.Operation;
 import com.iconmaster.source.prototype.Field;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.TypeDef;
+import com.iconmaster.srcbox.library.CoreFunctions.CustomFunction;
 import java.util.ArrayList;
 
 /**
@@ -69,12 +70,17 @@ public class FunctionExecutor extends Executor {
 				String fnName = op.args[1];
 				Function fn = vm.pkg.getFunction(fnName);
 				ArrayList<SourceObject> a = new ArrayList<>();
+				SourceObject[] aa = a.toArray(new SourceObject[0]);
 				for (int i=2;i<op.args.length;i++) {
 					a.add(getVar(op.args[i]));
 				}
-				vm.loadFunction(fn, a.toArray(new SourceObject[0]));
-				inCall = true;
-				return;
+				if (fn.data.containsKey("onRun")) {
+					setVar(op.args[0], ((CustomFunction)fn.data.get("onRun")).execute(vm, aa));
+				} else {
+					vm.loadFunction(fn, aa);
+					inCall = true;
+					return;
+				}
 		}
 		
 		incPC();

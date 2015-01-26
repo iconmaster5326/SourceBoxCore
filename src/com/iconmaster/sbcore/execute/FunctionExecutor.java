@@ -70,10 +70,10 @@ public class FunctionExecutor extends Executor {
 				String fnName = op.args[1];
 				Function fn = vm.pkg.getFunction(fnName);
 				ArrayList<SourceObject> a = new ArrayList<>();
-				SourceObject[] aa = a.toArray(new SourceObject[0]);
 				for (int i=2;i<op.args.length;i++) {
 					a.add(getVar(op.args[i]));
 				}
+				SourceObject[] aa = a.toArray(new SourceObject[0]);
 				if (fn.data.containsKey("onRun")) {
 					setVar(op.args[0], ((CustomFunction)fn.data.get("onRun")).execute(vm, aa));
 				} else {

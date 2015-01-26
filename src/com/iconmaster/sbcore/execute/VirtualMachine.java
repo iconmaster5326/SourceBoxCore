@@ -12,7 +12,7 @@ import java.util.Stack;
 public class VirtualMachine {
 	public HashMap<String,SourceObject> fields = new HashMap<>();
 	public SourcePackage pkg;
-	public Stack<Executor> execs;
+	public Stack<Executor> execs = new Stack<>();
 	public Executor last;
 	public boolean done = true;
 

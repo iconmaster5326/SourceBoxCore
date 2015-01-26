@@ -25,6 +25,7 @@ public class FunctionExecutor extends Executor {
 	
 	public Stack<Block> blockStack = new Stack<>();
 	public ArrayList<Block> blocks;
+	public Stack<Block> repStack = new Stack<>();
 
 	public FunctionExecutor(VirtualMachine vm, Function fn, SourceObject... args) {
 		this.vm = vm;
@@ -121,10 +122,23 @@ public class FunctionExecutor extends Executor {
 					pc = blockStack.peek().endOp;
 				}
 				break;
+			case REP:
+				if (repStack.isEmpty() || repStack.peek()!=blockStack.peek()) {
+					repStack.push(blockStack.peek());
+				} else {
+					ob = getVar(op.args[0]);
+					if (ob.data.equals(true)) {
+						pc = blockStack.peek().endOp;
+						repStack.pop();
+					}
+				}
+				break;
 			case ENDB:
 				if (blockStack.peek().op.op==OpType.IF) {
 					blockStack.pop();
 				} else if (blockStack.peek().op.op==OpType.WHILE) {
+					pc = blockStack.peek().doOp;
+				} else if (blockStack.peek().op.op==OpType.REP) {
 					pc = blockStack.peek().doOp;
 				}
 				break;

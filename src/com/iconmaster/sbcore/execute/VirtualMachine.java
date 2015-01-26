@@ -1,4 +1,4 @@
-package com.iconmaster.srcbox.execute;
+package com.iconmaster.sbcore.execute;
 
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.SourcePackage;

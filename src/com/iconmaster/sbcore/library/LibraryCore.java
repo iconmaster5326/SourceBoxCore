@@ -1,4 +1,4 @@
-package com.iconmaster.srcbox.library;
+package com.iconmaster.sbcore.library;
 
 import com.iconmaster.source.compile.DataType;
 import com.iconmaster.source.prototype.Field;

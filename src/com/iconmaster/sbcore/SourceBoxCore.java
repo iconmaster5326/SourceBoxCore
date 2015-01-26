@@ -1,11 +1,11 @@
-package com.iconmaster.srcbox;
+package com.iconmaster.sbcore;
 
 import com.iconmaster.source.link.Platform;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.SourcePackage;
 import com.iconmaster.source.util.Directives;
-import com.iconmaster.srcbox.library.CoreFunctions;
-import com.iconmaster.srcbox.library.LibraryCore;
+import com.iconmaster.sbcore.library.CoreFunctions;
+import com.iconmaster.sbcore.library.LibraryCore;
 
 /**
  *

@@ -1,8 +1,8 @@
-package com.iconmaster.srcbox.library;
+package com.iconmaster.sbcore.library;
 
 import com.iconmaster.source.prototype.SourcePackage;
-import com.iconmaster.srcbox.execute.SourceObject;
-import com.iconmaster.srcbox.execute.VirtualMachine;
+import com.iconmaster.sbcore.execute.SourceObject;
+import com.iconmaster.sbcore.execute.VirtualMachine;
 
 /**
  *

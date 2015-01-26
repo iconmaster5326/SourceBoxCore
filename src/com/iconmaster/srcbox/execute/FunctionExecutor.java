@@ -42,6 +42,12 @@ public class FunctionExecutor extends Executor {
 					setVar(op.args[0], new SourceObject(op.type, Double.parseDouble(op.args[1])));
 				}
 				break;
+			case MOVS:
+				setVar(op.args[0], new SourceObject(TypeDef.STRING, op.args[1]));
+				break;
+			case MOV:
+				setVar(op.args[0], getVar(op.args[1]));
+				break;
 		}
 		
 		pc++;

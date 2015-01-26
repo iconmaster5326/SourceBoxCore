@@ -1,11 +1,14 @@
 package com.iconmaster.sbcore.execute;
 
+import com.iconmaster.sbcore.execute.BlockHelper.Block;
 import com.iconmaster.sbcore.library.CoreFunctions.CustomFunction;
 import com.iconmaster.source.compile.Operation;
+import com.iconmaster.source.compile.Operation.OpType;
 import com.iconmaster.source.prototype.Field;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.TypeDef;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  *
@@ -19,11 +22,15 @@ public class FunctionExecutor extends Executor {
 	public ArrayList<Operation> code;
 	public boolean inCall = false;
 	public SourceObject[] args;
+	
+	public Stack<Block> blockStack = new Stack<>();
+	public ArrayList<Block> blocks;
 
 	public FunctionExecutor(VirtualMachine vm, Function fn, SourceObject... args) {
 		this.vm = vm;
 		this.fn = fn;
 		this.code = fn.getCode();
+		blocks = BlockHelper.getBlocks(code);
 		this.args = args;
 		
 		for (int i = 0;i<args.length;i++) {
@@ -66,6 +73,10 @@ public class FunctionExecutor extends Executor {
 			case MOV:
 				setVar(op.args[0], getVar(op.args[1]));
 				break;
+			case TRUE:
+				setVar(op.args[0], new SourceObject(TypeDef.BOOLEAN, true));
+			case FALSE:
+				setVar(op.args[0], new SourceObject(TypeDef.BOOLEAN, false));
 			case CALL:
 				String fnName = op.args[1];
 				Function fn = vm.pkg.getFunction(fnName);
@@ -90,6 +101,21 @@ public class FunctionExecutor extends Executor {
 				}
 				return;
 			case DO:
+				blockStack.push(blocks.get(pc));
+				break;
+			case IF:
+				SourceObject ob = getVar(op.args[0]);
+				if (ob.data.equals(false)) {
+					pc = blockStack.peek().elseOp;
+				}
+				break;
+			case ELSE:
+				pc = blockStack.pop().endOp;
+				break;
+			case ENDB:
+				if (blockStack.peek().op.op==OpType.IF) {
+					blockStack.pop();
+				}
 				break;
 		}
 		

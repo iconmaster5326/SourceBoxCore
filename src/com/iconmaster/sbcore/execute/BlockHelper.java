@@ -11,9 +11,12 @@ import java.util.Stack;
  */
 public class BlockHelper {
 	public static class Block {
+		public Operation op;
+		
 		public int doOp = -1;
 		public int blockOp = -1;
 		public int endOp = -1;
+		public int elseOp = -1;
 
 		public Block() {}
 	}
@@ -31,6 +34,9 @@ public class BlockHelper {
 				s.peek().doOp = i;
 			} else if (op.op.isBlockStarter()) {
 				s.peek().blockOp = i;
+				s.peek().op = op;
+			} else if (op.op==OpType.ELSE) {
+				s.peek().elseOp = i;
 			} else if (op.op==OpType.ENDB) {
 				s.peek().endOp = i;
 				a.add(s.pop());

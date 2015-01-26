@@ -1,10 +1,10 @@
 package com.iconmaster.sbcore.execute;
 
+import com.iconmaster.sbcore.library.CoreFunctions.CustomFunction;
 import com.iconmaster.source.compile.Operation;
 import com.iconmaster.source.prototype.Field;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.TypeDef;
-import com.iconmaster.sbcore.library.CoreFunctions.CustomFunction;
 import java.util.ArrayList;
 
 /**

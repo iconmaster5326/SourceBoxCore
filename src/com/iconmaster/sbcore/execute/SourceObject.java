@@ -20,4 +20,9 @@ public class SourceObject {
 		this.type = new DataType(type);
 		this.data = data;
 	}
+
+	@Override
+	public String toString() {
+		return "<"+type+"> "+data;
+	}
 }

@@ -115,9 +115,17 @@ public class FunctionExecutor extends Executor {
 			case ELSE:
 				pc = blockStack.pop().endOp;
 				break;
+			case WHILE:
+				ob = getVar(op.args[0]);
+				if (ob.data.equals(false)) {
+					pc = blockStack.peek().endOp;
+				}
+				break;
 			case ENDB:
 				if (blockStack.peek().op.op==OpType.IF) {
 					blockStack.pop();
+				} else if (blockStack.peek().op.op==OpType.WHILE) {
+					pc = blockStack.peek().doOp;
 				}
 				break;
 		}

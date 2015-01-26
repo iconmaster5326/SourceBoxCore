@@ -24,9 +24,10 @@ public class IteratorExecutor extends FunctionExecutor {
 		Operation op = code.get(pc);
 		
 		if (op.op==OpType.RET) {
-			vm.ret();
 			vm.loadExecutor(creator);
 			creator.done = false;
+			
+			incPC();
 		} else {
 			super.step();
 			

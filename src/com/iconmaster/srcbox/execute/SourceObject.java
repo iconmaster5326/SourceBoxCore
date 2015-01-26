@@ -1,6 +1,7 @@
 package com.iconmaster.srcbox.execute;
 
 import com.iconmaster.source.compile.DataType;
+import com.iconmaster.source.prototype.TypeDef;
 
 /**
  *
@@ -12,6 +13,11 @@ public class SourceObject {
 
 	public SourceObject(DataType type, Object data) {
 		this.type = type;
+		this.data = data;
+	}
+	
+	public SourceObject(TypeDef type, Object data) {
+		this.type = new DataType(type);
 		this.data = data;
 	}
 }

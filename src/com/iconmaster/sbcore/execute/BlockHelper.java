@@ -18,7 +18,10 @@ public class BlockHelper {
 		public int endOp = -1;
 		public int elseOp = -1;
 
-		public Block() {}
+		@Override
+		public String toString() {
+			return "<"+doOp+" "+blockOp+" "+endOp+" "+elseOp+">";
+		}
 	}
 	
 	public static ArrayList<Block> getBlocks(ArrayList<Operation> ops) {
@@ -45,12 +48,16 @@ public class BlockHelper {
 		
 		ArrayList<Block> a2 = new ArrayList<>();
 		for (int i = 0;i<ops.size();i++) {
+			boolean found = false;
 			for (Block b : a) {
-				if (b.doOp==i || b.blockOp==i || b.endOp == i) {
+				if (b.doOp==i || b.blockOp==i || b.endOp == i || b.elseOp == i) {
 					a2.add(b);
-				} else {
-					a2.add(null);
+					found = true;
+					break;
 				}
+			}
+			if (!found) {
+				a2.add(null);
 			}
 		}
 		

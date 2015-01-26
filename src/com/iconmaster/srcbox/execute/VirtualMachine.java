@@ -44,4 +44,10 @@ public class VirtualMachine {
 			done = true;
 		}
 	}
+	
+	public void run() {
+		while (!done) {
+			step();
+		}
+	}
 }

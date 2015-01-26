@@ -1,7 +1,9 @@
 package com.iconmaster.srcbox;
 
 import com.iconmaster.source.link.Platform;
+import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.SourcePackage;
+import com.iconmaster.source.util.Directives;
 import com.iconmaster.srcbox.library.CoreFunctions;
 import com.iconmaster.srcbox.library.LibraryCore;
 
@@ -16,5 +18,22 @@ public class SourceBoxCore {
 		lib = new LibraryCore();
 		plat.registerLibrary(lib);
 		CoreFunctions.registerFunctions(lib);
+	}
+	
+	public static Function getMainFunction(SourcePackage pkg) {
+		for (Function fn : pkg.getFunctions()) {
+			if (Directives.has(fn, "main")) {
+				return fn;
+			}
+		}
+		for (Function fn : pkg.getFunctions()) {
+			if (Directives.has(fn, "export")) {
+				return fn;
+			}
+		}
+		for (Function fn : pkg.getFunctions()) {
+			return fn;
+		}
+		return null;
 	}
 }

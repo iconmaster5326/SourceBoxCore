@@ -75,8 +75,10 @@ public class FunctionExecutor extends Executor {
 				break;
 			case TRUE:
 				setVar(op.args[0], new SourceObject(TypeDef.BOOLEAN, true));
+				break;
 			case FALSE:
 				setVar(op.args[0], new SourceObject(TypeDef.BOOLEAN, false));
+				break;
 			case CALL:
 				String fnName = op.args[1];
 				Function fn = vm.pkg.getFunction(fnName);
@@ -92,6 +94,7 @@ public class FunctionExecutor extends Executor {
 					inCall = true;
 					return;
 				}
+				break;
 			case RET:
 				done = true;
 				if (op.args.length>0) {

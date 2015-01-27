@@ -46,7 +46,7 @@ public class FunctionExecutor extends Executor {
 
 	@Override
 	public void step() {
-		if (pc>=code.size() || code==null) {
+		if (code==null || pc>=code.size()) {
 			done = true;
 			return;
 		}

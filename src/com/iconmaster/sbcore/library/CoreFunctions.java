@@ -1,5 +1,6 @@
 package com.iconmaster.sbcore.library;
 
+import com.iconmaster.sbcore.execute.ExecUtils;
 import com.iconmaster.sbcore.execute.SourceObject;
 import com.iconmaster.sbcore.execute.VirtualMachine;
 import com.iconmaster.source.prototype.SourcePackage;
@@ -29,6 +30,7 @@ public class CoreFunctions {
 		});
 		
 		pkg.getFunction("core.int._add").data.put("onRun",(CustomFunction) (vm, args) -> {
+			if (!ExecUtils.checkType(vm, pkg.getFunction("core.int._add"), args)) {return null;}
 			return new SourceObject(args[0].type, ((int)args[0].data)+((int)args[1].data));
 		});
 		pkg.getFunction("core.int64._add").data.put("onRun",(CustomFunction) (vm, args) -> {

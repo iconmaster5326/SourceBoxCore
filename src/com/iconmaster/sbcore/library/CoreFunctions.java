@@ -3,6 +3,7 @@ package com.iconmaster.sbcore.library;
 import com.iconmaster.sbcore.execute.ExecUtils;
 import com.iconmaster.sbcore.execute.SourceObject;
 import com.iconmaster.sbcore.execute.VirtualMachine;
+import com.iconmaster.source.compile.DataType;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.SourcePackage;
 import com.iconmaster.source.prototype.TypeDef;
@@ -843,6 +844,14 @@ public class CoreFunctions {
 			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 				return new SourceObject(args[0].type, ~((long)args[0].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.?.concat");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(new DataType(TypeDef.STRING), ""+args[0].data+args[1].data);
 			});
 		}
 		

@@ -855,7 +855,7 @@ public class CoreFunctions {
 		}
 		
 		for (TypeDef type : LibraryCore.MATH_TYPES) {
-			ArrayList<Function> fns = pkg.getFunctions("core."+type.name+".cast");
+			ArrayList<Function> fns = pkg.getFunctions("core."+type.name+"._cast");
 			for (Function fn : fns) {
 				TypeDef t = fn.getArguments().get(0).getType().type;
 				if (t==TypeDef.INT || t==TypeDef.INT32) {

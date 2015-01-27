@@ -3,7 +3,6 @@ package com.iconmaster.sbcore.library;
 import com.iconmaster.sbcore.execute.ExecUtils;
 import com.iconmaster.sbcore.execute.SourceObject;
 import com.iconmaster.sbcore.execute.VirtualMachine;
-import com.iconmaster.source.compile.DataType;
 import com.iconmaster.source.prototype.Function;
 import com.iconmaster.source.prototype.SourcePackage;
 import com.iconmaster.source.prototype.TypeDef;
@@ -848,11 +847,49 @@ public class CoreFunctions {
 		}
 		
 		{
-			Function fn = pkg.getFunction("core.?.concat");
+			Function fn = pkg.getFunction("core.?._concat");
 			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
-				return new SourceObject(new DataType(TypeDef.STRING), ""+args[0].data+args[1].data);
+				return new SourceObject(TypeDef.STRING, ""+args[0].data+args[1].data);
 			});
+		}
+		
+		for (TypeDef type : LibraryCore.MATH_TYPES) {
+			ArrayList<Function> fns = pkg.getFunctions("core."+type.name+".cast");
+			for (Function fn : fns) {
+				TypeDef t = fn.getArguments().get(0).getType().type;
+				if (t==TypeDef.INT || t==TypeDef.INT32) {
+					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+						return new SourceObject(type, ((Number)args[0].data).intValue());
+					});
+				} else if (t==TypeDef.INT8) {
+					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+						return new SourceObject(type, ((Number)args[0].data).byteValue());
+					});
+				} else if (t==TypeDef.INT16) {
+					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+						return new SourceObject(type, ((Number)args[0].data).shortValue());
+					});
+				} else if (t==TypeDef.INT64) {
+					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+						return new SourceObject(type, ((Number)args[0].data).longValue());
+					});
+				} else if (t==TypeDef.REAL || t==TypeDef.REAL32) {
+					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+						return new SourceObject(type, ((Number)args[0].data).floatValue());
+					});
+				} else if (t==TypeDef.REAL64) {
+					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+						return new SourceObject(type, ((Number)args[0].data).doubleValue());
+					});
+				}
+			}
 		}
 		
 		pkg.getIterator("core.range").data.put("onRun",(CustomIterator) (vm, args) -> {

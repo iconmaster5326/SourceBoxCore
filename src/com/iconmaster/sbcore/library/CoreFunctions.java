@@ -372,6 +372,348 @@ public class CoreFunctions {
 			});
 		}
 		
+		{
+			Function fn = pkg.getFunction("core.int._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)==((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)==((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)==((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)==((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)==((long)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)==((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real32._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)==((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real64._eq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((double)args[0].data)==((double)args[1].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.int._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)!=((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)!=((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)!=((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)!=((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)!=((long)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)!=((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real32._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)!=((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real64._neq");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((double)args[0].data)!=((double)args[1].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.int._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)<((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)<((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)<((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)<((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)<((long)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)<((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real32._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)<((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real64._lt");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((double)args[0].data)<((double)args[1].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.int._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)>((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)>((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)>((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)>((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)>((long)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)>((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real32._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)>((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real64._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((double)args[0].data)>((double)args[1].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.int._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)<=((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)<=((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)<=((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)<=((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)<=((long)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)<=((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real32._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)<=((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real64._le");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((double)args[0].data)<=((double)args[1].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.int._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)>=((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)>=((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)>=((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)>=((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)>=((long)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)>=((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real32._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((float)args[0].data)>=((float)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.real64._ge");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((double)args[0].data)>=((double)args[1].data));
+			});
+		}
+		
 		pkg.getIterator("core.range").data.put("onRun",(CustomIterator) (vm, args) -> {
 			ArrayList<SourceObject[]> pairs = new ArrayList<>();
 			int begin = ((Number)args[0].data).intValue();

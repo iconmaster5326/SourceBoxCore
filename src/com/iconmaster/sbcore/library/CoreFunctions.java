@@ -857,33 +857,32 @@ public class CoreFunctions {
 		for (TypeDef type : LibraryCore.MATH_TYPES) {
 			ArrayList<Function> fns = pkg.getFunctions("core."+type.name+"._cast");
 			for (Function fn : fns) {
-				TypeDef t = fn.getArguments().get(0).getType().type;
-				if (t==TypeDef.INT || t==TypeDef.INT32) {
+				if (type==TypeDef.INT || type==TypeDef.INT32) {
 					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 						return new SourceObject(type, ((Number)args[0].data).intValue());
 					});
-				} else if (t==TypeDef.INT8) {
+				} else if (type==TypeDef.INT8) {
 					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 						return new SourceObject(type, ((Number)args[0].data).byteValue());
 					});
-				} else if (t==TypeDef.INT16) {
+				} else if (type==TypeDef.INT16) {
 					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 						return new SourceObject(type, ((Number)args[0].data).shortValue());
 					});
-				} else if (t==TypeDef.INT64) {
+				} else if (type==TypeDef.INT64) {
 					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 						return new SourceObject(type, ((Number)args[0].data).longValue());
 					});
-				} else if (t==TypeDef.REAL || t==TypeDef.REAL32) {
+				} else if (type==TypeDef.REAL || type==TypeDef.REAL32) {
 					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 						return new SourceObject(type, ((Number)args[0].data).floatValue());
 					});
-				} else if (t==TypeDef.REAL64) {
+				} else if (type==TypeDef.REAL64) {
 					fn.data.put("onRun",(CustomFunction) (vm, args) -> {
 						if (!ExecUtils.checkType(vm, fn, args)) {return null;}
 						return new SourceObject(type, ((Number)args[0].data).doubleValue());

@@ -714,6 +714,78 @@ public class CoreFunctions {
 			});
 		}
 		
+		{
+			Function fn = pkg.getFunction("core.int._bit_and");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)&((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._bit_and");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)&((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._bit_and");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)&((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._bit_and");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)&((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._bit_and");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)&((long)args[1].data));
+			});
+		}
+		
+		{
+			Function fn = pkg.getFunction("core.int._bit_or");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)|((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int8._bit_or");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((byte)args[0].data)|((byte)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int16._bit_or");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((short)args[0].data)|((short)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int32._bit_or");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((int)args[0].data)|((int)args[1].data));
+			});
+		}
+		{
+			Function fn = pkg.getFunction("core.int64._bit_or");
+			fn.data.put("onRun",(CustomFunction) (vm, args) -> {
+				if (!ExecUtils.checkType(vm, fn, args)) {return null;}
+				return new SourceObject(args[0].type, ((long)args[0].data)|((long)args[1].data));
+			});
+		}
+		
 		pkg.getIterator("core.range").data.put("onRun",(CustomIterator) (vm, args) -> {
 			ArrayList<SourceObject[]> pairs = new ArrayList<>();
 			int begin = ((Number)args[0].data).intValue();

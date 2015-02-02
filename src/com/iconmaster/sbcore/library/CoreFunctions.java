@@ -24,6 +24,7 @@ public class CoreFunctions {
 	
 	public static void registerFunctions(SourcePackage pkg) {
 		pkg.getFunction("core.print").data.put("onRun",(CustomFunction) (vm, args) -> {
+			if (args.length==0 || args[0].data==null) {return null;}
 			PrintWriter pw = new PrintWriter(vm.outputStream);
 			pw.println(args[0].data);
 			pw.flush();
